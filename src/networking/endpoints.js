@@ -1,0 +1,1 @@
+export const GET_PRODUCT_LIST = 'https://my-json-server.typicode.com/benirvingplt/products/products';
