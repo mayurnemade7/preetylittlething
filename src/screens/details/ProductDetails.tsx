@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import { Image, SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import FastImage from 'react-native-fast-image'
 import { ScrollView } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
-import CustomHeader from '../common/CustomHeader'
-import QuantitySelector from '../common/QuantitySelector'
-import { addProduct, removeProduct } from '../store/cart/action'
+import CustomHeader from '../../common/CustomHeader'
+import ProductInfoContainer from '../../common/ProductInfoContainer'
+import QuantitySelector from '../../common/QuantitySelector'
+import { addProduct, removeProduct } from '../../store/cart/action'
 
 
 
-export const ProductDetails = ({ navigation, route }) => {
+export const ProductDetails = () => {
 
 
 
@@ -24,22 +26,10 @@ export const ProductDetails = ({ navigation, route }) => {
 
             <ScrollView>
                 <View style={styles.cardStyle}>
-                    <Image
-                        style={styles.imageStyle}
-                        source={{
-                            uri: item.img,
-                        }}
-                    />
-                    <Text style={styles.textStyle}>
-                        {"$ " + item.price}
-                    </Text>
-                    <Text style={styles.textStyle}>
-                        {item.name}
-                    </Text>
-
-                    <Text style={styles.textStyle}>
-                        {"Color " + item.colour}
-                    </Text>
+                    <FastImage style={styles.imageStyle}
+                        resizeMode={FastImage.resizeMode.contain}
+                        source={{ uri: item.img, priority: FastImage.priority.normal }} />
+                    <ProductInfoContainer product={item} />
 
                     <QuantitySelector
                         id={1}
@@ -70,11 +60,6 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
 
     },
-    textStyle: {
-        fontFamily: 'Lato-Regular',
-        fontSize: 16,
-        paddingHorizontal: 6
-    }
 })
 
 export default ProductDetails
