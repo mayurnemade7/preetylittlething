@@ -21,7 +21,6 @@ function CustomHeader({ showBackButton }: CustomHeaderProps) {
   
 
     const navigation = useNavigation();
-    console.log("Navigation--", navigation)
 
     function renderBackButton() {
         return (

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { View, Pressable, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
+import { Product } from '../screens/types';
 
 import RegularText from './RegularText';
 
@@ -16,25 +17,30 @@ const QuantitySelector = ({ id, setQuantity, onAdd, onRemove }: QuantitySelector
    // const product = getProduct(id);
 
    const cart = useSelector(state => state.cart)
-    const { totalProducts :quantity = 0} = cart || {}
-   
+    const { cartItems = []} = cart || {}
+  
 
+    function getProductFromId(id: number) {
+        const productInCart: Product | undefined = cartItems.find(p => p.id === id);
+        return productInCart;
+    }
+    
     function onMinus() {
         onRemove();
-        setQuantity(Math.max(0, quantity - 1));
+        setQuantity(Math.max(0, getProductFromId(id)?.quantity - 1));
     };
 
     function onPlus() {
         onAdd()
-        setQuantity(quantity + 1);
+        setQuantity(getProductFromId(id)?.quantity + 1);
     };
 
     return (
         <View style={styles.container}>
-            <Pressable onPress={onMinus} style={styles.button} disabled={quantity === 0}>
+            <Pressable onPress={onMinus} style={styles.button} >
                 <RegularText style={styles.butonText} text={"-"} />
             </Pressable>
-            <RegularText style={styles.quantity} text={quantity.toString()} />
+            <RegularText style={styles.quantity} text={getProductFromId(id)?.quantity ? getProductFromId(id)?.quantity.toString() : 0} />
             <Pressable onPress={onPlus} style={styles.button}>
                 <RegularText style={styles.butonText} text={"+"} />
             </Pressable>

@@ -14,7 +14,6 @@ interface ProductItemViewProps {
 function ProductItemView(props: ProductItemViewProps) {
 
     const { product, onPress } = props;
-    console.log("Props--", product)
     return (
         <View style={styles.cardStyle}>
             <TouchableOpacity onPress={() => { onPress(product) }}>

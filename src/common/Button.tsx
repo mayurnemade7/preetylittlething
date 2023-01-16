@@ -11,7 +11,6 @@ interface ButtonProps {
 }
 
 function Button(props: ButtonProps) {
-    console.log('render')
     return (
         <Pressable
             onPress={props.onPress}

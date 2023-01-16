@@ -32,7 +32,7 @@ export const ProductDetails = () => {
                     <ProductInfoContainer product={item} />
 
                     <QuantitySelector
-                        id={1}
+                        id={item.id}
                         setQuantity={setQuantity}
                         onAdd={() => { dispatch(addProduct(item)) }}
                         onRemove={() => { dispatch(removeProduct(item)) }} />

@@ -3,5 +3,6 @@ export interface Product{
     name: string,
     colour: string,
     price: number,
-    img:string
+    img:string,
+    quantity:number
 }

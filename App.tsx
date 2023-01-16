@@ -13,14 +13,18 @@ import reducer from "./src/store/reducer";
 import { Provider as ReduxProvider } from 'react-redux'
 import saga from "./src/store/saga";
 import ProductListContainer from "./src/screens/list/ProductListContainer";
+import {composeWithDevTools} from 'redux-devtools-extension/developmentOnly';
 
 const sagaMiddleware = createSagaMiddleware()
 
 
+
 const store = createStore(
   reducer,
-  applyMiddleware(sagaMiddleware)
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
 )
+
+
 
 const Stack = createStackNavigator()
 sagaMiddleware.run(saga)
