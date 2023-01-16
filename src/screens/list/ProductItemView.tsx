@@ -14,12 +14,13 @@ interface ProductItemViewProps {
 function ProductItemView(props: ProductItemViewProps) {
 
     const { product, onPress } = props;
+    console.log("Props--", product)
     return (
         <View style={styles.cardStyle}>
             <TouchableOpacity onPress={() => { onPress(product) }}>
                 <FastImage style={styles.imageStyle}
                     resizeMode={FastImage.resizeMode.contain}
-                    source={{ uri: product.img, priority: FastImage.priority.normal }} />
+                    source={{ uri: product?.img, priority: FastImage.priority.normal }} />
              <ProductInfoContainer product = {product}/>
             </TouchableOpacity>
         </View>

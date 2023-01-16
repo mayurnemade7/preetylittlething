@@ -16,7 +16,7 @@ const QuantitySelector = ({ id, setQuantity, onAdd, onRemove }: QuantitySelector
    // const product = getProduct(id);
 
    const cart = useSelector(state => state.cart)
-    const { totalProducts :quantity} = cart || {}
+    const { totalProducts :quantity = 0} = cart || {}
    
 
     function onMinus() {

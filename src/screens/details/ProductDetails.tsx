@@ -16,8 +16,8 @@ export const ProductDetails = () => {
 
 
     const products = useSelector(state => state.prouducts)
-    const { selectedProduct: item } = products || {}
-    const [quantity, setQuantity] = useState(item.quantity || 0);
+    const { selectedProduct: item = {} } = products || {}
+    const [quantity, setQuantity] = useState(item?.quantity || 0);
     const dispatch = useDispatch()
 
     return (
@@ -28,7 +28,7 @@ export const ProductDetails = () => {
                 <View style={styles.cardStyle}>
                     <FastImage style={styles.imageStyle}
                         resizeMode={FastImage.resizeMode.contain}
-                        source={{ uri: item.img, priority: FastImage.priority.normal }} />
+                        source={{ uri: item?.img, priority: FastImage.priority.normal }} />
                     <ProductInfoContainer product={item} />
 
                     <QuantitySelector

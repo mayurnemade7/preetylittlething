@@ -13,7 +13,7 @@ function ProductInfoContainer ({product}:ProductInfoContainerProps) {
         <Text style={styles.textStyle}>
                     {"$ " + product.price}
                 </Text>
-                <Text style={styles.textStyle}>
+                <Text testID='color'style={styles.textStyle}>
                     {product.name}
                 </Text>
 
