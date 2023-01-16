@@ -6,7 +6,7 @@ import * as reactRedux from 'react-redux'
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
-import { initalProductList } from '../../../../__tests__/__mocks__';
+import { initalProductList } from '../../../__mocks__';
 
 
 
