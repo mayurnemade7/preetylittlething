@@ -7,14 +7,16 @@ import { Product } from './types'
 interface ProductListProps {
     products: Product[];
     onPress: (item: any) => void
+    addToCart: (product: Product) =>void;
 }
 
-function ProductList({ products, onPress }: ProductListProps) {
+function ProductList({ products, onPress,addToCart }: ProductListProps) {
 
     const renderItem: ListRenderItem<Product> = ({ item }) => {
         return (< ProductItemView
             product={item}
             onPress={onPress}
+            addToCart={addToCart}
 
         />)
     };

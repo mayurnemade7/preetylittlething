@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { ActivityIndicator, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, Image, ImageBackground, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
 import { imageMap } from '../../icons/imageMap'
@@ -7,6 +7,8 @@ import { getProductList, setSelectedProduct } from '../../store/products/action'
 import FastImage from 'react-native-fast-image'
 import ProductList from './ProductList'
 import { Product } from '../types'
+import CustomHeader from '../../common/CustomHeader'
+import { addProduct } from '../../store/cart/action'
 
 const ProductListContainer = ({ navigation }: any) => {
 
@@ -23,13 +25,21 @@ const ProductListContainer = ({ navigation }: any) => {
         { navigation.navigate('Details', { item }) }
     }
 
-    return (
-        <View style={styles.containerStyle}>
+    function handleAdd(item:Product) {
+        dispatch(addProduct(item))
+    }
 
+    return (
+        <SafeAreaView>
+        
+            <CustomHeader showBackButton={false} title= {'Home'}/>
             <ProductList
                 products={list}
                 onPress={(item) => {
                     handleNavigation(item)
+                }}
+                addToCart={(item) =>{
+                    handleAdd(item)
                 }}
 
             />
@@ -40,7 +50,8 @@ const ProductListContainer = ({ navigation }: any) => {
                 size='large'
             />
 
-        </View>
+     
+        </SafeAreaView>
     )
 }
 

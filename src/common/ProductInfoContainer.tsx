@@ -4,32 +4,35 @@ import { Product } from '../screens/types'
 
 interface ProductInfoContainerProps {
     product: Product;
+    containerStyle?: {};
 }
-function ProductInfoContainer ({product}:ProductInfoContainerProps) {
+function ProductInfoContainer({ product, containerStyle }: ProductInfoContainerProps) {
 
-    
-    return(
-        <View>
-        <Text style={styles.textStyle}>
-                    {"$ " + product.price}
-                </Text>
-                <Text testID='color'style={styles.textStyle}>
-                    {product.name}
-                </Text>
+    function renderQuantity() {
+        return (
+            product.quantity ? <Text style={styles.textStyle}>
+                {"Quantity " + product?.quantity}
+            </Text> : null
+        )
+    }
+    return (
+        <View style={containerStyle}>
+            <Text style={styles.textStyle}>
+                {"$ " + product.price}
+            </Text>
+            <Text testID='color' style={styles.textStyle}>
+                {product.name}
+            </Text>
 
-                <Text style={styles.textStyle}>
-                    {"Color " + product.colour}
-                </Text>
-                </View>
+            <Text style={styles.textStyle}>
+                {"Color " + product.colour}
+            </Text>
+            {renderQuantity()}
+        </View>
     )
 }
 const styles = StyleSheet.create({
-    containerStyle: {
-        flex: 1,
-        paddingHorizontal: 4,
-        justifyContent: 'center'
-
-    },
+    
     cardStyle: {
         width: '50%',
         alignItems: 'center',
@@ -46,4 +49,4 @@ const styles = StyleSheet.create({
         paddingHorizontal: 6
     }
 })
-export default  ProductInfoContainer
+export default ProductInfoContainer

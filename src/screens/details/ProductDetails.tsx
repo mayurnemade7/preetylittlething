@@ -22,7 +22,7 @@ export const ProductDetails = () => {
 
     return (
         <SafeAreaView>
-            <CustomHeader showBackButton={true} />
+            <CustomHeader showBackButton={true} title= {'Details'}/>
 
             <ScrollView>
                 <View style={styles.cardStyle}>

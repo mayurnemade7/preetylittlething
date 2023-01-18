@@ -14,7 +14,7 @@ export const cartReducer = (state = initiatlState, action: any) => {
         case ADD_PRODUCT: {
 
             const { payload } = action;
-            const item = state.cartItems.find(
+            const item = state.cartItems?.find(
                 product => product.id === payload.id ? true : false
             );
 
@@ -40,7 +40,7 @@ export const cartReducer = (state = initiatlState, action: any) => {
                 return {
                     ...state,
                     cartItems: [ ...state.cartItems, firstProduct ],
-                    totalProducts: 1,
+                    totalProducts: getTotalProducts(state.cartItems),
                     totalPrice: state.totalPrice + payload.price,
                     
                 };
@@ -48,7 +48,7 @@ export const cartReducer = (state = initiatlState, action: any) => {
         }
         case REMOVE_PRODUCT: {
             const { payload } = action;
-            const item = state.cartItems.find(
+            const item = state.cartItems?.find(
                 product => product.id === payload.id ? true : false
             );
 
@@ -65,18 +65,12 @@ export const cartReducer = (state = initiatlState, action: any) => {
                         : item
                     ),
                     totalPrice: state.totalPrice + payload.price,
-                    totalProducts: getTotalProducts(state.cartItems)
+                    totalProducts: state.totalProducts - 1
                 };
             }
            
-                console.log("cartReducer else ", state)
-                const firstProduct = {...payload, quantity: qty}
-                return {
-                    ...state,
-                    cartItems: [ ...state.cartItems, firstProduct ],
-                    totalPrice: state.totalPrice + payload.price,
-                    totalProducts: getTotalProducts(state.cartItems)
-                };
+           
+                return[];
         }
 
         default: {

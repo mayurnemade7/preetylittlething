@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Pressable, Text } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -9,12 +9,15 @@ import RegularText from "./RegularText";
 
 import ImageButton from "./ImageButton";
 import { useSelector } from "react-redux";
+import { TouchableOpacity } from "react-native-gesture-handler";
+
 
 
 interface CustomHeaderProps {
     showBackButton: boolean;
+    title:string
 }
-function CustomHeader({ showBackButton }: CustomHeaderProps) {
+function CustomHeader({ showBackButton, title }: CustomHeaderProps) {
    
     const cart = useSelector(state => state.cart)
     const { totalProducts = 0} = cart || {}
@@ -31,13 +34,17 @@ function CustomHeader({ showBackButton }: CustomHeaderProps) {
                         imageSrc={images.back}
                         onPress={navigation.goBack}
                     />
-                </View> : null
+                </View> : <View/>
         )
     }
 
     return (
         <View style={styles.containerStyle}>
             {renderBackButton()}
+           <Text style={styles.titleStyle} >{title}</Text>
+            <TouchableOpacity onPress={()=>{
+                console.log("clicked")
+                navigation.navigate('Cart')}}>
             <View style={styles.cartContainerStyle}>
                 <RegularText
                     style={styles.cartCountTextStyle}
@@ -48,6 +55,7 @@ function CustomHeader({ showBackButton }: CustomHeaderProps) {
                     imageSrc={images.cart}
                 />
             </View>
+            </TouchableOpacity>
 
         </View >
     )
@@ -59,14 +67,15 @@ const styles = StyleSheet.create({
         backgroundColor: "black",
         alignItems: 'flex-start',
         justifyContent: 'space-between',
+        alignContent:'center',
         flexDirection: 'row'
     },
-    userNameTextStyle: {
-        fontSize: 14,
+    titleStyle: {
+        fontSize: 18,
         color: "white",
         margin: 10,
         marginBottom: 0,
-        textAlign: 'left'
+        textAlign: 'center'
     },
     buttonStyle: {
         width: 70,

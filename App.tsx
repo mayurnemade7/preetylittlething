@@ -14,6 +14,7 @@ import { Provider as ReduxProvider } from 'react-redux'
 import saga from "./src/store/saga";
 import ProductListContainer from "./src/screens/list/ProductListContainer";
 import {composeWithDevTools} from 'redux-devtools-extension/developmentOnly';
+import CartItems from "./src/screens/cart/CartIems";
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -34,11 +35,12 @@ function App() {
     <ReduxProvider store={store}>
       <NavigationContainer>
 
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={ProductListContainer} />
-          <Stack.Screen name="Details" component={ProductDetails} options={{
+        <Stack.Navigator initialRouteName="Home"  screenOptions={{
             headerShown: false
-          }} />
+          }}>
+          <Stack.Screen name="Home" component={ProductListContainer} />
+          <Stack.Screen name="Details" component={ProductDetails}  />
+          <Stack.Screen name="Cart" component={CartItems}  />
         </Stack.Navigator>
 
       </NavigationContainer>
