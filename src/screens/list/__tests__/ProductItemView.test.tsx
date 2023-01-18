@@ -9,28 +9,30 @@ import renderer from 'react-test-renderer';
 import { initalProductList } from '../../../__mocks__';
 
 
+const product = initalProductList[0];
+const onPress = jest.fn()
+const addToCart = jest.fn()
 
 
 it('Product details renders correctly afetr', () => {
-
-    const product = initalProductList[0];
-    const onPress = jest.fn()
-
-
     renderer.create(<ProductItemView product={product}
-        onPress={onPress} />)
+        onPress={onPress} addToCart={addToCart} />)
 });
 
-it('price renders correctly afetr', () => {
-
-    const product = initalProductList[0];
-    const onPress = jest.fn()
-
-    
+it('color renders correctly afetr', () => {
     const instance = renderer.create(<ProductItemView product={product}
-        onPress={onPress} />)
+        onPress={onPress} addToCart={addToCart} />)
 
-        const colorText = instance.root.findByProps({testID:'color'})
+    const colorText = instance.root.findByProps({ testID: 'color' })
 
-      expect(colorText).toBeTruthy()
+    expect(colorText).toBeTruthy()
 });
+
+it('quantity  renders correctly afetr', () => {
+    const instance = renderer.create(<ProductItemView product={product}  onPress={onPress} addToCart={addToCart}/>)
+
+    const quantity = instance.root.findByProps({ testID: 'quantity' })
+
+    expect(quantity).toBeTruthy()
+});
+

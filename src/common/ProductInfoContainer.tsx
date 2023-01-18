@@ -10,7 +10,7 @@ function ProductInfoContainer({ product, containerStyle }: ProductInfoContainerP
 
     function renderQuantity() {
         return (
-            product.quantity ? <Text style={styles.textStyle}>
+            product?.quantity ? <Text testID='quantity' style={styles.textStyle}>
                 {"Quantity " + product?.quantity}
             </Text> : null
         )
