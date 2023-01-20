@@ -16,6 +16,13 @@ const ProductListContainer = ({ navigation }: any) => {
     const products = useSelector(state => state.prouducts)
     const { list, loading } = products || {}
 
+   
+    useEffect(()=>{
+        console.log("useeffect 1")
+    },[])
+
+   
+
     useEffect(() => {
         dispatch(getProductList())
     }, [])
